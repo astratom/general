@@ -148,8 +148,8 @@ Try {
 		Copy-File -Path "$dirFiles\*" -Destination "$env:PUBLIC\IBM\ClientSolutions\" -Recurse -ContinueFileCopyOnError $true
 
 		# Create shortcuts
-        New-Shortcut -Path "$env:ProgramData\Microsoft\Windows\Start Menu\IBM i Access Client Solutions\Access Client Solutions.lnk" -TargetPath "$env:PUBLIC\IBM\ClientSolutions\Start_Programs\Windows_x86-64\acslaunch_win-64.exe" -Description "IBM i Access Client Solutions" -Hotkey "CTRL+ALT+SHIFT+A" -IconLocation "$env:PUBLIC\IBM\ClientSolutions\Start_Programs\Windows_x86-64\acslaunch_win-64.exe" -IconIndex "0" -WorkingDirectory "$env:PUBLIC\IBM\ClientSolutions\"
-        New-Shortcut -Path "$env:ProgramData\Microsoft\Windows\Start Menu\IBM i Access Client Solutions\ACS Session Mgr.lnk" -TargetPath "$env:PUBLIC\IBM\ClientSolutions\Start_Programs\Windows_x86-64\acslaunch_win-64.exe" -Arguments "/plugin=sm" -Description "IBM i Access Client Solutions - Session Manager" -Hotkey "CTRL+ALT+SHIFT+B" -IconLocation "$env:PUBLIC\IBM\ClientSolutions\Start_Programs\Windows_x86-64\acslaunch_win-64.exe" -IconIndex "5" -WorkingDirectory "$env:PUBLIC\IBM\ClientSolutions\"
+		New-Shortcut -Path "$env:ProgramData\Microsoft\Windows\Start Menu\IBM i Access Client Solutions\Access Client Solutions.lnk" -TargetPath "$env:PUBLIC\IBM\ClientSolutions\Start_Programs\Windows_x86-64\acslaunch_win-64.exe" -Description "IBM i Access Client Solutions" -Hotkey "CTRL+ALT+SHIFT+A" -IconLocation "$env:PUBLIC\IBM\ClientSolutions\Start_Programs\Windows_x86-64\acslaunch_win-64.exe" -IconIndex "0" -WorkingDirectory "$env:PUBLIC\IBM\ClientSolutions\"
+		New-Shortcut -Path "$env:ProgramData\Microsoft\Windows\Start Menu\IBM i Access Client Solutions\ACS Session Mgr.lnk" -TargetPath "$env:PUBLIC\IBM\ClientSolutions\Start_Programs\Windows_x86-64\acslaunch_win-64.exe" -Arguments "/plugin=sm" -Description "IBM i Access Client Solutions - Session Manager" -Hotkey "CTRL+ALT+SHIFT+B" -IconLocation "$env:PUBLIC\IBM\ClientSolutions\Start_Programs\Windows_x86-64\acslaunch_win-64.exe" -IconIndex "5" -WorkingDirectory "$env:PUBLIC\IBM\ClientSolutions\"
         
 		##*===============================================
 		##* POST-INSTALLATION
@@ -158,7 +158,7 @@ Try {
 
 		## <Perform Post-Installation tasks here>
 		# Register file associations
-        Execute-ProcessAsUser -Path "$env:PUBLIC\IBM\ClientSolutions\Start_Programs\Windows_x86-64\acslaunch_win-64.exe" -Parameters "-Dcom.ibm.iaccess.AcceptEndUserLicenseAgreement=true /PLUGIN=fileassoc dttx dtfx hod bchx ws" -Wait
+		Execute-ProcessAsUser -Path "$env:PUBLIC\IBM\ClientSolutions\Start_Programs\Windows_x86-64\acslaunch_win-64.exe" -Parameters "-Dcom.ibm.iaccess.AcceptEndUserLicenseAgreement=true /PLUGIN=fileassoc dttx dtfx hod bchx ws" -Wait
 
 		# Known issue - the associations are only registered for the currently logged on user. If deployed as required but there is no user logged on - it will fail to register.
 		# A workaround we use is to just create a shortcut that the end user can launch manually to re-register them
@@ -196,10 +196,10 @@ Try {
 		Execute-ProcessAsUser -Path "$env:PUBLIC\IBM\ClientSolutions\Start_Programs\Windows_x86-64\acslaunch_win-64.exe" -Parameters "-norecurse /PLUGIN=fileassoc dttx dtfx hod bchx ws /c" -Wait
 
         #Remove folder
-        Remove-Folder -Path "$env:PUBLIC\IBM\ClientSolutions" -ContinueOnError $true
+		Remove-Folder -Path "$env:PUBLIC\IBM\ClientSolutions" -ContinueOnError $true
         
         #Remove shortcuts
-        Remove-Folder -Path "$env:ProgramData\Microsoft\Windows\Start Menu\IBM i Access Client Solutions" -ContinueOnError $true		
+		Remove-Folder -Path "$env:ProgramData\Microsoft\Windows\Start Menu\IBM i Access Client Solutions" -ContinueOnError $true		
 
 		##*===============================================
 		##* POST-UNINSTALLATION
