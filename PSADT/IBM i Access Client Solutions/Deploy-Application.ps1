@@ -195,10 +195,10 @@ Try {
 		# Unregister file associations
 		Execute-ProcessAsUser -Path "$env:PUBLIC\IBM\ClientSolutions\Start_Programs\Windows_x86-64\acslaunch_win-64.exe" -Parameters "-norecurse /PLUGIN=fileassoc dttx dtfx hod bchx ws /c" -Wait
 
-        #Remove folder
+		#Remove folder
 		Remove-Folder -Path "$env:PUBLIC\IBM\ClientSolutions" -ContinueOnError $true
         
-        #Remove shortcuts
+		#Remove shortcuts
 		Remove-Folder -Path "$env:ProgramData\Microsoft\Windows\Start Menu\IBM i Access Client Solutions" -ContinueOnError $true		
 
 		##*===============================================
